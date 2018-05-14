@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/portable-cto/cfpland-rss#readme",
   "dependencies": {
+    "dotenv": "^5.0.1",
+    "moment": "^2.22.1",
     "node-fetch": "^2.1.2"
   }
 }
