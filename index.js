@@ -5,22 +5,21 @@ require('dotenv').config();
 
 async function run() {
   // Collect data
-  let conferences = await collect();
+  const allConferences = await collect();
 
   // Filter just those coming soon
-  conferences = filter(conferences);
-
-  // Organize results
-  conferences = filter(conferences);
+  const startsSoon = filter.startsSoon(allConferences);
+  const cfpSoon = filter.cfpEndsSoon(allConferences);
 
   // Save the results
-  const res = await save(conferences);
+  const res1 = await save(startsSoon, process.env.JSONBIN_STARTS_SOON_ID);
+  const res2 = await save(cfpSoon, process.env.JSONBIN_CFP_ENDS_SOON_ID);
 
-  if (res.success === true) {
-    return Promise.resolve(res.data);
+  if (res1.success === false || res2.success === false) {
+    return Promise.reject([res1, res2]);
   } else {
-    return Promise.reject(res.message);
+    return Promise.resolve([res1, res2]);
   }
 }
 
-run().then((results) => console.log('Results: ', results.length));
+run().then((results) => console.log('Results: ', results));

@@ -1,11 +1,10 @@
 const fetch = require('node-fetch');
-require('dotenv').config();
 
 const baseUrl = 'https://api.jsonbin.io/b';
 
-module.exports = async(conferences) => {
+module.exports = async(conferences, jsonbinId) => {
   return await fetch(
-    baseUrl + '/' + process.env.JSONBIN_ID,
+    baseUrl + '/' + jsonbinId,
     {
       method: 'PUT',
       body:    JSON.stringify(conferences),

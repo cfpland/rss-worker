@@ -3,24 +3,33 @@ const today = moment();
 
 const soonDays = 30;
 
-function conferenceStartsSoon(conference) {
-  const startDate = moment(conference.startDate);
-  return conference.startDate && startDate.diff(today, 'days') <= soonDays && startDate.diff(today, 'days') >= 0;
-}
+const startsSoon = (conferences) => {
+  const results = [];
+  for (let conference of conferences) {
+    const startDate = moment(conference.startDate);
 
-function conferenceCfpEndsSoon(conference) {
-  const cfpEndDate = moment(conference.cfpEndDate);
-  return conference.cfpEndDate && cfpEndDate.diff(today, 'days') <= soonDays && cfpEndDate.diff(today, 'days') >= 0;
-}
+    if (conference.startDate && startDate.diff(today, 'days') <= soonDays && startDate.diff(today, 'days') >= 0) {
+      results.push(conference);
+    }
+  }
 
-module.exports = (conferences) => {
-  // TODO: Organize and sort conferences into two arrays
-  let conferences = conferences.filter(
-    conference => (
-      conferenceStartsSoon(conference) ||
-      conferenceCfpEndsSoon(conference)
-    ) ? conference : null
-  );
+  return results.sort((a, b) => moment(a.startDate).diff(moment(b.startDate)));
+};
 
-  return conferences;
+const cfpEndsSoon = (conferences) => {
+  const results = [];
+  for (let conference of conferences) {
+    const cfpEndDate = moment(conference.cfpEndDate);
+
+    if (conference.cfpEndDate && cfpEndDate.diff(today, 'days') <= soonDays && cfpEndDate.diff(today, 'days') >= 0) {
+      results.push(conference);
+    }
+  }
+
+  return results.sort((a, b) => moment(a.cfpEndDate).diff(moment(b.cfpEndDate)));
+};
+
+module.exports = {
+  startsSoon,
+  cfpEndsSoon,
 };
