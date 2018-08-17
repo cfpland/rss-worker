@@ -1,7 +1,6 @@
 const fetch = require('node-fetch');
 
-const baseUrl = 'https://api.github.com/repos/tech-conferences/confs.tech/contents/conferences';
-const jsBaseUrl = 'https://raw.githubusercontent.com/tech-conferences/javascript-conferences/master/conferences';
+const baseUrl = 'https://api.github.com/repos/tech-conferences/conference-data/contents/conferences';
 const minYear = new Date().getFullYear();
 
 function getJson(url) {
@@ -20,10 +19,6 @@ function getCategory(downloadUrl) {
   return getJson(downloadUrl);
 }
 
-function getJsCategory(year) {
-  return getJson(jsBaseUrl + '/' + year + '/javascript.json');
-}
-
 module.exports = async () => {
   const years = await getYears(minYear);
   let results = [];
@@ -36,9 +31,6 @@ module.exports = async () => {
       const category = await getCategory(categorySpec.download_url);
       results = results.concat(category);
     }
-    // Also get the JS category
-    const jsResults = await getJsCategory(yearObject.name);
-    results = results.concat(jsResults);
   }
 
   return Promise.resolve(results);
