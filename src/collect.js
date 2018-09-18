@@ -4,7 +4,11 @@ const baseUrl = 'https://api.github.com/repos/tech-conferences/conference-data/c
 const minYear = new Date().getFullYear();
 
 function getJson(url) {
-  return fetch(url).then(r => r.json());
+  try {
+    return fetch(url).then(r => r.json());
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 async function getYears(minYear) {
@@ -28,8 +32,12 @@ module.exports = async () => {
 
     // Get results for each category
     for (let categorySpec of categories) {
-      const category = await getCategory(categorySpec.download_url);
-      results = results.concat(category);
+      try {
+        const category = await getCategory(categorySpec.download_url);
+        results = results.concat(category);
+      } catch (e) {
+        console.error(e);
+      }
     }
   }
 
