@@ -17,6 +17,7 @@ app.get('/cfps', (req, res) => {
       feed.item({
         title: result.name,
         description: '<p>CFPs Due: ' + result.cfpEndDate + '</p>' +
+        '<p>Start Date: ' + result.startDate + '</p>' +
         '<p>Location: ' + result.city + ', ' + result.country + '</p>',
         url: result.cfpUrl || result.url,
         date: result.cfpEndDate,
