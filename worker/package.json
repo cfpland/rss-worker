@@ -1,0 +1,19 @@
+{
+  "name": "cfpland-worker",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "webpack -p --progress --colors"
+  },
+  "main": "dist/index.js",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "acorn": "^6.1.1",
+    "dotenv-webpack": "^1.7.0",
+    "node-fetch": "^2.1.2",
+    "rss": "^1.2.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  }
+}
