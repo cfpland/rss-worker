@@ -1,4 +1,5 @@
 const collect = require('./src/collect');
+const categorize = require('./src/categorize');
 const filter = require('./src/filter');
 const save = require('./src/save');
 require('dotenv').config();
@@ -6,12 +7,13 @@ require('dotenv').config();
 async function run() {
   // Collect data
   const allConferences = await collect();
+  const conferencesWithCategories = categorize(allConferences);
 
   // Filter just those coming soon
-  const startsSoon = filter.startsSoon(allConferences);
-  const cfpSoon = filter.cfpEndsSoon(allConferences);
+  const startsSoon = filter.startsSoon(conferencesWithCategories);
+  const cfpSoon = filter.cfpEndsSoon(conferencesWithCategories);
 
-  // Save the results
+  // Save the results to JSONBin
   const res1 = await save(startsSoon, process.env.JSONBIN_STARTS_SOON_ID);
   const res2 = await save(cfpSoon, process.env.JSONBIN_CFP_ENDS_SOON_ID);
 

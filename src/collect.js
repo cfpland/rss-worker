@@ -33,7 +33,10 @@ module.exports = async () => {
     // Get results for each category
     for (let categorySpec of categories) {
       try {
-        const category = await getCategory(categorySpec.download_url);
+        // Get the results and attach a filename to each
+        let category = (await getCategory(categorySpec.download_url))
+          .map(item => ({...item, filename: categorySpec.name}));
+
         results = results.concat(category);
       } catch (e) {
         console.error(e);
