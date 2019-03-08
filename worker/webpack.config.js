@@ -1,4 +1,5 @@
 const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack');
 
 module.exports = {
   entry: "./src/index.js",
@@ -14,6 +15,9 @@ module.exports = {
   },
   plugins: [
     new Dotenv(),
+    new webpack.DefinePlugin({
+      LAST_MODIFIED: JSON.stringify(new Date().toJSON()),
+    }),
   ],
   output: {
     path: __dirname + "/dist",
