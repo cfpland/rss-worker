@@ -16,11 +16,22 @@ addEventListener('fetch', event => {
   event.respondWith(route(event));
 });
 
+async function responseOrCache(event, router) {
+  let cache = caches.default;
+  let request = event.request;
+  let response = await cache.match(request);
+
+  if (!response) {
+    response = await router.route(request);
+    event.waitUntil(cache.put(request, response.clone()));
+  }
+
+  return response;
+}
+
 async function route(event) {
 
   try {
-    let request = event.request;
-
     // router.on('/', 'OPTIONS', (req) => {
     //     let newHeaders = new Headers(req.request.headers);
     //     newHeaders.set('access-control-allow-origin', '*');
@@ -30,7 +41,7 @@ async function route(event) {
     router.get('/rss/starting', RssController.starting);
     router.get('/rss/twitter', RssController.twitter);
 
-    return router.route(request);
+    return responseOrCache(event, router);
 
   } catch (ex) {
     console.log(ex);
