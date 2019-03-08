@@ -1,6 +1,7 @@
 require('../helpers')();
 const jsonbin = require('../data-provider/jsonbin-data-provider');
 const StandardRssAdapter = require('../adapters/standard-rss-adapter');
+const TwitterRssAdapter = require('../adapters/twitter-rss-adapter');
 
 class RssController {
 
@@ -45,8 +46,8 @@ class RssController {
   async twitter(req) {
     let cfpData = await jsonbin.getCfps();
 
-    const rssAdapter = new StandardRssAdapter({
-      title: 'CFPs Ending Soon',
+    const rssAdapter = new TwitterRssAdapter({
+      title: 'CFPLand Twitter Feed',
       feedUrl: req.url,
       results: cfpData,
       type: 'cfps',

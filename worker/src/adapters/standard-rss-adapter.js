@@ -22,6 +22,10 @@ class StandardRssAdapter {
     return feed.xml();
   }
 
+  getItemTitle(result) {
+    return result.name;
+  }
+
   getItemDescription(result) {
     return this.type === 'cfps' ?
       '<p>CFPs Due: ' + result.cfpEndDate + '</p>' +
@@ -34,7 +38,7 @@ class StandardRssAdapter {
 
   generateItemFromResult(result) {
     return {
-      title: result.name,
+      title: this.getItemTitle(result),
       description: this.getItemDescription(result),
       categories: [result.category],
       custom_elements: [
