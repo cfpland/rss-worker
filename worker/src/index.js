@@ -30,14 +30,25 @@ function createFeed(targetConfig) {
   });
 }
 
+function getItemDescription(result, targetConfig) {
+  return targetConfig.type === 'cfps' ?
+    '<p>CFPs Due: ' + result.cfpEndDate + '</p>' +
+    '<p>Conference Date: ' + result.startDate + '</p>' +
+    '<p>Location: ' + result.city + ', ' + result.country + '</p>'
+    :
+    '<p>Start Date: ' + result.startDate + '</p>' +
+    '<p>Location: ' + result.city + ', ' + result.country + '</p>';
+}
+
 function generateItemFromResult(result, targetConfig) {
   return {
     title: result.name,
-    description: result.city + ', ' + result.country,
+    description: getItemDescription(result, targetConfig),
     categories: [result.category],
     custom_elements: [
       {'eventStartDate': result.startDate},
       {'cfpEndDate': result.cfpEndDate},
+      {'location': result.city + ', ' + result.country},
     ],
     url: (targetConfig === 'cfps' && result.cfpUrl) ? result.cfpUrl : result.url,
     date: (targetConfig === 'cfps' && result.cfpEndDate) ? result.cfpEndDate : result.startDate,
