@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "webpack -p --progress --colors"
+    "build": "webpack -p --progress --colors",
+    "watch": "webpack -p --progress --colors --watch"
   },
   "main": "dist/index.js",
   "author": "",
@@ -11,9 +12,9 @@
   "dependencies": {
     "acorn": "^6.1.1",
     "dotenv-webpack": "^1.7.0",
-    "node-fetch": "^2.1.2",
+    "query-string": "^6.4.0",
     "rss": "^1.2.2",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.3.0"
   }
 }

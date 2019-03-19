@@ -30,10 +30,14 @@ class StandardRssAdapter {
     return this.type === 'cfps' ?
       '<p>CFPs Due: ' + result.cfpEndDate + '</p>' +
       '<p>Conference Date: ' + result.startDate + '</p>' +
-      '<p>Location: ' + result.city + ', ' + result.country + '</p>'
+      '<p>Location: ' + this.getItemLocation(result) + '</p>'
       :
       '<p>Start Date: ' + result.startDate + '</p>' +
-      '<p>Location: ' + result.city + ', ' + result.country + '</p>';
+      '<p>Location: ' + this.getItemLocation(result) + '</p>';
+  }
+
+  getItemLocation(result) {
+    return result.location ? result.location : result.city + ', ' + result.country;
   }
 
   generateItemFromResult(result) {
@@ -44,7 +48,7 @@ class StandardRssAdapter {
       custom_elements: [
         {'eventStartDate': result.startDate},
         {'cfpEndDate': result.cfpEndDate},
-        {'location': result.city + ', ' + result.country},
+        {'location': this.getItemLocation(result)},
       ],
       url: (this.type === 'cfps' && result.cfpUrl) ? result.cfpUrl : result.url,
       date: (this.type === 'cfps' && result.cfpEndDate) ? result.cfpEndDate : result.startDate,

@@ -1,5 +1,6 @@
 import { default as router } from './router';
 import { default as RssController } from './controllers/rss-controller';
+import { default as Rss2Controller } from './controllers/rss-2-controller';
 
 addEventListener('install', event => {
   console.log('Installing CloudFlare Worker...');
@@ -40,6 +41,7 @@ async function route(event) {
     router.get('/rss/cfps', RssController.cfps);
     router.get('/rss/starting', RssController.starting);
     router.get('/rss/twitter', RssController.twitter);
+    router.get('/2.0/rss/cfps', Rss2Controller.cfps);
 
     return responseOrCache(event, router);
 
