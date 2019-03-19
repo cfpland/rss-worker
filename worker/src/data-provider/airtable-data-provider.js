@@ -25,6 +25,7 @@ class AirtableDataProvider {
         cfpEndDate: record.fields.cfp_due_date,
         startDate: record.fields.event_start_date,
         location: record.fields.location,
+        // TODO: Add category: record.fields.category is ID
       }))
     );
   }
