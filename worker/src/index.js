@@ -43,6 +43,8 @@ async function route(event) {
     router.get('/rss/twitter', RssController.twitter);
     router.get('/v2/rss/cfps', Rss2Controller.cfps);
 
+    // Skips cache
+    // return router.route(event.request);
     return responseOrCache(event, router);
 
   } catch (ex) {

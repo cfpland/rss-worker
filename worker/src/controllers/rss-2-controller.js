@@ -5,7 +5,7 @@ const StandardRssAdapter = require('../adapters/standard-rss-adapter');
 class Rss2Controller {
 
   async cfps(req) {
-    const cfpData = await airtable.getCfps();
+    const cfpData = await airtable.getCfps({category: req.query.category || undefined});
 
     const rssAdapter = new StandardRssAdapter({
       title: 'CFPs Ending Soon',
