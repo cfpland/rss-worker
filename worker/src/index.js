@@ -41,7 +41,7 @@ async function route(event) {
     router.get('/rss/cfps', RssController.cfps);
     router.get('/rss/starting', RssController.starting);
     router.get('/rss/twitter', RssController.twitter);
-    router.get('/2.0/rss/cfps', Rss2Controller.cfps);
+    router.get('/v2/rss/cfps', Rss2Controller.cfps);
 
     return responseOrCache(event, router);
 

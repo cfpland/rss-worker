@@ -9,7 +9,7 @@ class AirtableDataProvider {
   getCfps() {
     return this.get('conferences', {
       maxRecords: '100',
-      view: 'coming_soon',
+      view: 'closing_soon',
     });
   }
 
