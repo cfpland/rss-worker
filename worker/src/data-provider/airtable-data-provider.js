@@ -1,4 +1,20 @@
 const queryString = require('query-string');
+const airtableCategories = {
+  reccuVH9RAqQtSHpx: '.NET',
+  recPsE290uvH6WTk7: 'CSS',
+  recjXmS0Xj12HgDpc: 'Data',
+  recCWNeVmnvqqLZ3g: 'Design',
+  recir5J2EveRLjSVM: 'DevOps',
+  recpadyXkUIVXE9Su: 'General',
+  recVLIw2l7UPVWzhu: 'Go',
+  recdo1D4TYjfXCtY8: 'Java',
+  recnzqyy9cKkwmaaR: 'Javascript',
+  recdpNkA8p9PGxmte: 'Mobile',
+  recGEhJ4pbFWq0qQP: 'PHP',
+  recZeJLEe2SeOw3dp: 'Python',
+  rec0KLa89eHs0Nzpc: 'Ruby',
+  reccvolsacTi6o7Wt: 'Security',
+};
 
 class AirtableDataProvider {
   constructor() {
@@ -35,7 +51,7 @@ class AirtableDataProvider {
         cfpEndDate: record.fields.cfp_due_date,
         startDate: record.fields.event_start_date,
         location: record.fields.location,
-        // TODO: Add category: record.fields.category is ID
+        category: airtableCategories[record.fields.category] || 'General',
       }))
     );
   }
