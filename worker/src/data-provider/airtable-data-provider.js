@@ -28,7 +28,7 @@ class AirtableDataProvider {
 
   getCfps(options) {
     if (options.category) {
-      options.filterByFormula = `FIND("${options.category}", {category})`;
+      options.filterByFormula = `"${options.category}"={category}`;
       delete options.category;
     }
     return this.get('conferences', this.constructOptions(options));
@@ -52,6 +52,7 @@ class AirtableDataProvider {
         startDate: record.fields.event_start_date,
         location: record.fields.location,
         category: airtableCategories[record.fields.category] || 'General',
+        url: record.fields.cfp_url,
       }))
     );
   }
