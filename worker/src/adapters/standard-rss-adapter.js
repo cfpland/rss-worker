@@ -48,7 +48,7 @@ class StandardRssAdapter {
       custom_elements: [
         {'eventStartDate': result.startDate},
         {'cfpEndDate': result.cfpEndDate},
-        {'createdDate': result.createdDate || ''},
+        {'isNew': result.isNew || false},
         {'location': this.getItemLocation(result)},
       ],
       url: (this.type === 'cfps' && result.cfpUrl) ? result.cfpUrl : result.url,

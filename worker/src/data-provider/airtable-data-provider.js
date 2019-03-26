@@ -53,7 +53,7 @@ class AirtableDataProvider {
         location: record.fields.location,
         category: airtableCategories[record.fields.category] || 'General',
         url: record.fields.cfp_url,
-        createdDate: record.fields.created_date,
+        isNew: !!record.fields.is_new,
       }))
     );
   }
