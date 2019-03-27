@@ -54,6 +54,9 @@ class AirtableDataProvider {
         category: airtableCategories[record.fields.category] || 'General',
         url: record.fields.cfp_url,
         isNew: !!record.fields.is_new,
+        travel_covered: !!record.fields.travel_covered,
+        hotel_covered: !!record.fields.hotel_covered,
+        stipend_covered: !!record.fields.stipend_covered,
       }))
     );
   }
