@@ -50,6 +50,7 @@ class StandardRssAdapter {
         {'cfpEndDate': result.cfpEndDate},
         {'isNew': result.isNew || false},
         {'location': this.getItemLocation(result)},
+        {'has_perks': result.has_perks},
         {'travel_covered': result.travel_covered},
         {'hotel_covered': result.hotel_covered},
         {'stipend_covered': result.stipend_covered},
