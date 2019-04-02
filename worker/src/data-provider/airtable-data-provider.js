@@ -16,6 +16,30 @@ const airtableCategories = {
   reccvolsacTi6o7Wt: 'Security',
 };
 
+function getPerksList(data) {
+  let result = '';
+  if (data.perks_checked) {
+    if (data.travel_covered) {
+      result += 'Travel, ';
+    }
+    if (data.hotel_covered) {
+      result += 'Hotel, ';
+    }
+    if (data.stipend_covered) {
+      result += 'Stipend, ';
+    }
+    if (result.length < 2) {
+      result = 'None';
+    } else {
+      result = result.substring(0, result.length - 2);
+    }
+  } else {
+    result = '❓';
+  }
+
+  return result;
+}
+
 class AirtableDataProvider {
   constructor() {
     this.apiKey = process.env.AIRTABLE_API_KEY;
@@ -54,14 +78,7 @@ class AirtableDataProvider {
         category: airtableCategories[record.fields.category] || 'General',
         url: record.fields.cfp_url,
         isNew: !!record.fields.is_new,
-        has_perks: (
-          !!record.fields.travel_covered ||
-          !!record.fields.hotel_covered ||
-          !!record.fields.stipend_covered
-        ),
-        travel_covered: !!record.fields.travel_covered,
-        hotel_covered: !!record.fields.hotel_covered,
-        stipend_covered: !!record.fields.stipend_covered,
+        perksList: getPerksList(record.fields),
       }))
     );
   }
