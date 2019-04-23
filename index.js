@@ -10,17 +10,20 @@ async function run() {
   const conferencesWithCategories = categorize(allConferences);
 
   // Filter just those coming soon
-  const startsSoon = filter.startsSoon(conferencesWithCategories);
-  const cfpSoon = filter.cfpEndsSoon(conferencesWithCategories);
+  const cfpSoon = filter(conferencesWithCategories);
+  console.log(cfpSoon);
 
   // Save the results to JSONBin
-  const res1 = await save(startsSoon, process.env.JSONBIN_STARTS_SOON_ID);
-  const res2 = await save(cfpSoon, process.env.JSONBIN_CFP_ENDS_SOON_ID);
+  const res = await save(
+    cfpSoon,
+    process.env.JSONBIN_CFP_ENDS_SOON_ID,
+    process.env.JSONBIN_SECRET_KEY
+  );
 
-  if (res1.success === false || res2.success === false) {
-    return Promise.reject([res1, res2]);
+  if (res.success === false) {
+    return Promise.reject(res);
   } else {
-    return Promise.resolve([res1, res2]);
+    return Promise.resolve(res);
   }
 }
 
