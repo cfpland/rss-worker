@@ -33,11 +33,6 @@ async function responseOrCache(event, router) {
 async function route(event) {
 
   try {
-    // router.on('/', 'OPTIONS', (req) => {
-    //     let newHeaders = new Headers(req.request.headers);
-    //     newHeaders.set('access-control-allow-origin', '*');
-    //     return new Response('', { status: status, statusText: statusText, headers: newHeaders });
-    // });
     router.get('/rss/cfps', RssController.cfps);
     router.get('/rss/starting', RssController.starting);
     router.get('/rss/twitter', RssController.twitter);
