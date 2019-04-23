@@ -3,7 +3,7 @@ const StandardRssAdapter = require('./standard-rss-adapter');
 class TwitterRssAdapter extends StandardRssAdapter {
 
   getItemDescription(result) {
-    return `${result.name} is being held in ${result.city}, ${result.country} on ${result.startDate}.`;
+    return `${result.name} is being held in ${result.location} on ${result.startDate}.`;
   }
 
   getItemTitle(result) {

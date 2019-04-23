@@ -51,7 +51,7 @@ class AirtableDataProvider {
   }
 
   getCfps(options) {
-    if (options.category) {
+    if (options && options.category) {
       options.filterByFormula = `"${options.category}"={category}`;
       delete options.category;
     }

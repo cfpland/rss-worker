@@ -1,5 +1,4 @@
 import { default as router } from './router';
-import { default as RssController } from './controllers/rss-controller';
 import { default as Rss2Controller } from './controllers/rss-2-controller';
 
 addEventListener('install', event => {
@@ -33,9 +32,7 @@ async function responseOrCache(event, router) {
 async function route(event) {
 
   try {
-    router.get('/rss/cfps', RssController.cfps);
-    router.get('/rss/starting', RssController.starting);
-    router.get('/rss/twitter', RssController.twitter);
+    router.get('/v2/rss/twitter', Rss2Controller.twitter);
     router.get('/v2/rss/cfps', Rss2Controller.cfps);
 
     // Skips cache

@@ -5,7 +5,7 @@ class StandardRssAdapter {
     this.title = options.title || '';
     this.feedUrl = options.feedUrl || '';
     this.results = options.results || [];
-    this.type = options.type || 'starting';
+    this.type = options.type || 'cfps';
   }
 
   toRss() {
