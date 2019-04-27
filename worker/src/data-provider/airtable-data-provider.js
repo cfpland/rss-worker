@@ -45,8 +45,8 @@ class AirtableDataProvider {
     this.apiKey = process.env.AIRTABLE_API_KEY;
     this.baseId = process.env.AIRTABLE_BASE_ID;
     this.baseOptions = {
-      maxRecords: '100',
-      view: 'closing_soon',
+      maxRecords: '200',
+      view: 'closing_in_21',
     };
   }
 
