@@ -1,7 +1,7 @@
 const moment = require('moment');
 const today = moment();
 
-const soonDays = 30;
+const soonDays = 42;
 
 const filter = (conferences) => {
   const results = [];
