@@ -7,8 +7,10 @@ Live feed: `https://feeds.cfpland.com/v2/rss/cfps`
 
 - Create a `.env` file directory with the following:
 
-  > AIRTABLE_API_KEY=
-  > AIRTABLE_BASE_ID=
+```
+AIRTABLE_API_KEY=
+AIRTABLE_BASE_ID=
+```
 
 - Install packages: `npm install`
 - Run the build: `npm run build`
