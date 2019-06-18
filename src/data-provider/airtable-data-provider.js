@@ -1,4 +1,4 @@
-const queryString = require('query-string');
+const queryString = require('query-string/index');
 const airtableCategories = {
   reccuVH9RAqQtSHpx: '.NET',
   recPsE290uvH6WTk7: 'CSS',

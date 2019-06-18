@@ -1,6 +1,0 @@
-.env
-node_modules
-.git
-worker/dist
-worker/node_modules
-worker/.env

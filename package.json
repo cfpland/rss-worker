@@ -1,24 +1,20 @@
 {
-  "name": "cfpland-rss",
+  "name": "cfpland-worker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "worker/node_modules/.bin/webpack -p --progress --colors",
+    "watch": "worker/node_modules/.bin/webpack -p --progress --colors --watch"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/portable-cto/cfpland-rss.git"
-  },
+  "main": "../dist/index.js",
   "author": "",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/portable-cto/cfpland-rss/issues"
-  },
-  "homepage": "https://github.com/portable-cto/cfpland-rss#readme",
+  "license": "MIT",
   "dependencies": {
-    "dotenv": "^5.0.1",
-    "moment": "^2.24.0",
-    "node-fetch": "^2.3.0"
+    "acorn": "^6.1.1",
+    "dotenv-webpack": "^1.7.0",
+    "query-string": "^6.4.0",
+    "rss": "^1.2.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   }
 }
