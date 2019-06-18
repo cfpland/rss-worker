@@ -10,6 +10,7 @@ Live feed: `https://feeds.cfpland.com/v2/rss/cfps`
   > AIRTABLE_API_KEY=
   > AIRTABLE_BASE_ID=
 
+- Install packages: `npm install`
 - Run the build: `npm run build`
 - Copy the `./dist/index.js` file into Cloudflare as your worker.
 - Two endpoints available: `BASE_URL/rss/cfps`, `BASE_URL/rss/twitter`
