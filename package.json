@@ -9,7 +9,7 @@
   "author": "Karl Hughes <karl@cfpland.com>",
   "license": "MIT",
   "dependencies": {
-    "acorn": "^6.1.1",
+    "acorn": "^6.4.1",
     "dotenv-webpack": "^1.7.0",
     "query-string": "^6.4.0",
     "rss": "^1.2.2",
